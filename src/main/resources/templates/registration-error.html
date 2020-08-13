@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Error</title>
+</head>
+<body>
+<h1>Registration Error.</h1>
+<h2 th:text="'Cause: ' + ${error}"></h2>
+<a href="/">
+    Return to the front page.
+</a>
+
+<br/>
+
+<a href="/register">
+    Try to sign up again.
+</a>
+</body>
+</html>
