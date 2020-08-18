@@ -1,7 +1,8 @@
 package com.pokemons.pokemons.controller;
 
 import com.pokemons.pokemons.requests.UserRequest;
-import com.pokemons.pokemons.service.RegistrationService;
+import com.pokemons.pokemons.service.LoginService;
+import com.pokemons.pokemons.service.LoginServiceException;
 import com.pokemons.pokemons.service.RegistrationServiceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,28 +10,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class RegistrationController {
-    private RegistrationService registrationService;
+public class LoginController {
+    private LoginService loginService;
 
-    public RegistrationController(RegistrationService registrationService) {
-        this.registrationService = registrationService;
+    public LoginController(LoginService loginService) {
+        this.loginService = loginService;
     }
 
-    @GetMapping("/register")
-    public String getRegisterForm(Model model){
+    @GetMapping("/login")
+    public String getLoginForm(Model model){
         UserRequest userRequest = new UserRequest();
         model.addAttribute("userRequest", userRequest);
-        return "registration-form";
+        return "login-form";
     }
 
-    @PostMapping("/register")
-    public String sendRegistrationData(UserRequest userRequest, Model model){
+    @PostMapping("/login")
+    public String sendLoginData(UserRequest userRequest, Model model){
         System.out.println(userRequest);
 
         try {
-            registrationService.register(userRequest);
+            loginService.login(userRequest);
         }
-        catch (RegistrationServiceException e){
+        catch (LoginServiceException e){
             model.addAttribute("error", e.getMessage());
             return "error";
         }

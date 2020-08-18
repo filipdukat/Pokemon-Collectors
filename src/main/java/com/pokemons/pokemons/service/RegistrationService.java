@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 public class RegistrationService {
     private DBUserRepository userRepository;
 
-
     public RegistrationService( @Qualifier("DB") DBUserRepository userRepository) {
         this.userRepository = userRepository;
     }
