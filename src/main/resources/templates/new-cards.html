@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>New cards</title>
+</head>
+<body>
+New Cards
+
+<div th:each="card:${cards}" th:text="${card.cardName}">
+</div>
+
+</body>
+</html>
