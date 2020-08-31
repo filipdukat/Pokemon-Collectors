@@ -1,8 +1,7 @@
-package com.pokemons.pokemons.service;
+package com.pokemons.pokemons.service.registration;
 
 import com.pokemons.pokemons.model.User;
 import com.pokemons.pokemons.repository.DBUserRepository;
-import com.pokemons.pokemons.repository.UserRepository;
 import com.pokemons.pokemons.requests.UserRequest;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

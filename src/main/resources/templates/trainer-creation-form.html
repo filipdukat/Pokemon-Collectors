@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to the trainer creation form</title>
+</head>
+<body>
+Fill trainer data.
+
+<form action="/trainer-creation" method="post" th:object=${trainerRequest}>
+    Name: <input type="text" name="name" th:field="${trainerRequest.name}">
+    <br>
+    Male: <input type="radio" name="sex" value="MALE" th:field="${trainerRequest.sex}">
+    Female: <input type="radio" name="sex" value="FEMALE" th:field="${trainerRequest.sex}">
+    <br>
+    Birth Date: <input type="date" name="birth-date" th:field="${trainerRequest.birthDate}">
+    <input type="submit" value="Submit">
+    <div>
+        <a href="/">
+            Go back to the front page.
+        </a>
+    </div>
+</form>
+
+</body>
+</html>

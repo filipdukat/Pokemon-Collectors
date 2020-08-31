@@ -1,9 +1,8 @@
 package com.pokemons.pokemons.controller;
 
 import com.pokemons.pokemons.requests.UserRequest;
-import com.pokemons.pokemons.service.LoginService;
-import com.pokemons.pokemons.service.LoginServiceException;
-import com.pokemons.pokemons.service.RegistrationServiceException;
+import com.pokemons.pokemons.service.login.LoginService;
+import com.pokemons.pokemons.service.login.LoginServiceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

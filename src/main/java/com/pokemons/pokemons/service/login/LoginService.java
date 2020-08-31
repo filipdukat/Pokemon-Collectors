@@ -1,4 +1,4 @@
-package com.pokemons.pokemons.service;
+package com.pokemons.pokemons.service.login;
 
 import com.pokemons.pokemons.model.User;
 import com.pokemons.pokemons.repository.DBUserRepository;
