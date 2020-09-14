@@ -8,22 +8,26 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LoginService {
     private DBUserRepository userRepository;
-    private List<User> loggedUsers = new ArrayList<>();
+    private User loggedUser;
 
-    public LoginService( @Qualifier("DB") DBUserRepository userRepository) {
+    public LoginService(@Qualifier("DB") DBUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     public void login(UserRequest userRequest){
         User user = userRepository.findById(userRequest.getEmail()).get();
         if(user.getEmail().equals(userRequest.getEmail()) && user.getPassword().equals(userRequest.getPassword())){
-            loggedUsers.add(user);
-            System.out.println(loggedUsers);
+           loggedUser = user;
         }else
             throw new LoginServiceException("Wrong username or password.");
+    }
+
+    public Optional<User> getLoggedUser() {
+        return Optional.ofNullable(loggedUser);
     }
 }

@@ -1,26 +1,31 @@
 package com.pokemons.pokemons.service.packs_opening;
 
 import com.pokemons.pokemons.model.Card;
+import com.pokemons.pokemons.repository.DBCardRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 @Service
 public class PacksOpeningService {
-    private List<Card> cards;
+    private DBCardRepository dbCardRepository;
 
-    public PacksOpeningService() {
-        cards = List.of(new Card("Card 1"), new Card("Card 2"), new Card("Card 3"), new Card("Card 4"), new Card("Card 5"));
+    public PacksOpeningService(DBCardRepository dbCardRepository) {
+        this.dbCardRepository = dbCardRepository;
     }
 
     public List<Card> getCards(){
+        List<Card> cards = dbCardRepository.findAll();
+        List<Card> randomCards = new ArrayList<>();
         Random random = new Random();
-        int rand1 = random.nextInt(5);
-        int rand2 = random.nextInt(5);
 
-        List<Card> randomCards;
+        for (int i = 0; i < 5; i++) {
+            Card randomCard = cards.get(random.nextInt(cards.size()));
+            randomCards.add(randomCard);
+        }
 
-        return randomCards = List.of(cards.get(rand1), cards.get(rand2));
+        return randomCards;
     }
 }

@@ -2,11 +2,10 @@ package com.pokemons.pokemons.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Trainer {
@@ -15,6 +14,8 @@ public class Trainer {
     @Enumerated(value = EnumType.STRING)
     private Sex sex;
     private LocalDate birthDate;
+    @ManyToMany
+    private List<Card> cards = new ArrayList<>();
 
     public Trainer(String name, Sex sex, LocalDate birthDate) {
         this.name = name;

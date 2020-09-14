@@ -2,12 +2,15 @@ package com.pokemons.pokemons.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
     @Id
     private String email;
     private String password;
+    @OneToOne
+    private Trainer trainer;
 
     private User() {
     }
@@ -23,6 +26,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
     }
 
     @Override

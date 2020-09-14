@@ -5,10 +5,14 @@
     <title>New cards</title>
 </head>
 <body>
-New Cards
+<h1>New Cards</h1>
 
-<div th:each="card:${cards}" th:text="${card.cardName}">
-</div>
+<tr th:each="card:${cards}">
+    <td><img th:src="${card.imageUrl}"/></td>
+</tr>
+
+
+
 
 </body>
 </html>
