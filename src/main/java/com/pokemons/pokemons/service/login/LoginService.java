@@ -4,6 +4,9 @@ import com.pokemons.pokemons.model.User;
 import com.pokemons.pokemons.repository.DBUserRepository;
 import com.pokemons.pokemons.requests.UserRequest;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class LoginService {
+public class LoginService implements UserDetailsService {
     private DBUserRepository userRepository;
     private User loggedUser;
 
@@ -29,5 +32,11 @@ public class LoginService {
 
     public Optional<User> getLoggedUser() {
         return Optional.ofNullable(loggedUser);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        return userRepository.findById(username).orElseThrow(()->new UsernameNotFoundException("User not found."));
     }
 }

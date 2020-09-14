@@ -4,20 +4,33 @@ import com.pokemons.pokemons.model.User;
 import com.pokemons.pokemons.repository.DBUserRepository;
 import com.pokemons.pokemons.requests.UserRequest;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
 
 @Service
 public class RegistrationService {
     private DBUserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
-    public RegistrationService( @Qualifier("DB") DBUserRepository userRepository) {
+    public RegistrationService(@Qualifier("DB") DBUserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @PostConstruct
+    public void prepareTestUser(){
+        if (userRepository.count()== 0){
+            UserRequest user = new UserRequest("email@email.com", "123456");
+            register(user);
+        }
     }
 
     public void register(UserRequest userRequest){
         validateUser(userRequest);
 
-        User user = new User(userRequest.getEmail(), userRequest.getPassword());
+        User user = new User(userRequest.getEmail(), passwordEncoder.encode(userRequest.getPassword()));
 
         userRepository.save(user);
     }
