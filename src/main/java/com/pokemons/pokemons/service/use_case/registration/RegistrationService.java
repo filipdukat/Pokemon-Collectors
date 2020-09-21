@@ -1,4 +1,4 @@
-package com.pokemons.pokemons.service.registration;
+package com.pokemons.pokemons.service.use_case.registration;
 
 import com.pokemons.pokemons.model.User;
 import com.pokemons.pokemons.repository.DBUserRepository;
@@ -29,9 +29,7 @@ public class RegistrationService {
 
     public void register(UserRequest userRequest){
         validateUser(userRequest);
-
         User user = new User(userRequest.getEmail(), passwordEncoder.encode(userRequest.getPassword()));
-
         userRepository.save(user);
     }
 

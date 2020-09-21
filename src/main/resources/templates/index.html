@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
     <title>Pokemon Card Service</title>
 </head>
 <body>
 <p>Welcome to the front page!</p>
-<div>
-    <a href="/login">
-        Log In
-    </a>
+
+
+<!--https://stackoverflow.com/questions/56579301/how-do-i-hide-login-link-and-show-logout-link-in-homepage-navbar-once-user-logs-->
+<div sec:authorize="!isAuthenticated()">
+        <a href="/login">
+            Log In
+        </a>
 </div>
-<div>
+
+<div sec:authorize="!isAuthenticated()">
     <a href="/register">
         Sign Up
     </a>
 </div>
+
 <div>
     <a href="/logout">
         Log Out
@@ -23,7 +31,7 @@
 </div>
 
 <div>
-<!--    TODO: This should only appear after login-->
+<!--TODO: This should only appear after login-->
     <a href="/trainer-creation">
         Create your trainer
     </a>
@@ -34,5 +42,8 @@
         Packs Opening
     </a>
 </div>
+
+<span sec:authorize="isAuthenticated()" th:text="'You are logged in as: ' + ${user.getUsername()}"></span>
+
 </body>
 </html>

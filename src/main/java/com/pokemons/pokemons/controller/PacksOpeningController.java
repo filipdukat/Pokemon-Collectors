@@ -1,10 +1,9 @@
 package com.pokemons.pokemons.controller;
 
-import com.pokemons.pokemons.service.packs_opening.PacksOpeningService;
+import com.pokemons.pokemons.service.use_case.packs_opening.PacksOpeningService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PacksOpeningController {

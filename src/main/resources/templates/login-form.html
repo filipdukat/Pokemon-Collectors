@@ -6,10 +6,10 @@
 </head>
 <body>
 Login.
-<form action="/login" method="post" th:object=${userRequest}>
-    Email: <input type="email" name="email" th:field="${userRequest.email}">
+<form action="/login" method="post">
+    Email: <input type="email" name="username">
     <br>
-    Password: <input type="password" name="password" th:field="${userRequest.password}">
+    Password: <input type="password" name="password">
     <br>
     <input type="submit" value="Submit">
 </form>

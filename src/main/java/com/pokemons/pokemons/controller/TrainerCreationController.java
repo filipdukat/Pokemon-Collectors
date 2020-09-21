@@ -1,8 +1,8 @@
 package com.pokemons.pokemons.controller;
 
 import com.pokemons.pokemons.requests.TrainerRequest;
-import com.pokemons.pokemons.service.trainer_creation.TrainerCreationException;
-import com.pokemons.pokemons.service.trainer_creation.TrainerCreationService;
+import com.pokemons.pokemons.service.use_case.trainer_creation.TrainerCreationException;
+import com.pokemons.pokemons.service.use_case.trainer_creation.TrainerCreationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

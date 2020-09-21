@@ -27,6 +27,10 @@ public class Trainer {
 
     }
 
+    public void addCards(List<Card> newCards){
+        cards.addAll(newCards);
+    }
+
     @Override
     public String toString() {
         return "Trainer{" +

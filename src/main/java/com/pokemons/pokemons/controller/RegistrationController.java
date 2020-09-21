@@ -1,8 +1,8 @@
 package com.pokemons.pokemons.controller;
 
 import com.pokemons.pokemons.requests.UserRequest;
-import com.pokemons.pokemons.service.registration.RegistrationService;
-import com.pokemons.pokemons.service.registration.RegistrationServiceException;
+import com.pokemons.pokemons.service.use_case.registration.RegistrationService;
+import com.pokemons.pokemons.service.use_case.registration.RegistrationServiceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +25,7 @@ public class RegistrationController {
 
     @PostMapping("/register")
     public String sendRegistrationData(UserRequest userRequest, Model model){
-        System.out.println(userRequest);
+        System.err.println(userRequest);
 
         try {
             registrationService.register(userRequest);

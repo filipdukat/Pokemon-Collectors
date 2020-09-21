@@ -1,10 +1,10 @@
-package com.pokemons.pokemons.service.trainer_creation;
+package com.pokemons.pokemons.service.use_case.trainer_creation;
 
 import com.pokemons.pokemons.model.Trainer;
+import com.pokemons.pokemons.model.User;
 import com.pokemons.pokemons.repository.DBTrainerRepository;
 import com.pokemons.pokemons.requests.TrainerRequest;
-import com.pokemons.pokemons.service.login.LoginService;
-import com.pokemons.pokemons.service.registration.RegistrationService;
+import com.pokemons.pokemons.service.common.login.LoginService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,8 +12,9 @@ public class TrainerCreationService {
     private DBTrainerRepository trainerRepository;
     private LoginService loginService;
 
-    public TrainerCreationService(DBTrainerRepository trainerRepository) {
+    public TrainerCreationService(DBTrainerRepository trainerRepository, LoginService loginService) {
         this.trainerRepository = trainerRepository;
+        this.loginService = loginService;
     }
 
     public void create(TrainerRequest trainerRequest){
@@ -21,9 +22,13 @@ public class TrainerCreationService {
 
         Trainer trainer = new Trainer(trainerRequest.getName(), trainerRequest.getSex(), trainerRequest.getBirthDate());
 
-        loginService.getLoggedUser();
+        User loggedUser = loginService.getLoggedUserOrThrow();
+
+        loggedUser.setTrainer(trainer);
 
         trainerRepository.save(trainer);
+
+        loginService.updateUser(loggedUser);
     }
 
     private void validateTrainer(TrainerRequest trainerRequest){

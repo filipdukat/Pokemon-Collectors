@@ -1,7 +1,6 @@
 package com.pokemons.pokemons.configuration;
 
-import com.pokemons.pokemons.service.login.LoginService;
-import lombok.extern.java.Log;
+import com.pokemons.pokemons.service.common.login.LoginService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,12 +25,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/console/**").anonymous()
+                .antMatchers("/console/**").permitAll()
                 .antMatchers("/register").permitAll()
                 .anyRequest().authenticated()
 
                 .and()
-                .formLogin().permitAll();
+                .formLogin().permitAll()
+                .loginPage("/login").defaultSuccessUrl("/");
     }
 
     @Override

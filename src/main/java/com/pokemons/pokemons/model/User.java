@@ -36,6 +36,10 @@ public class User implements UserDetails {
         return new ArrayList<>(List.of(new SimpleGrantedAuthority("ROLE_USER")));
     }
 
+    public Trainer getTrainer() {
+        return trainer;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -74,6 +78,7 @@ public class User implements UserDetails {
         return "User{" +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", trainer=" + trainer +
                 '}';
     }
 }

@@ -1,8 +1,8 @@
 package com.pokemons.pokemons.controller;
 
 import com.pokemons.pokemons.requests.UserRequest;
-import com.pokemons.pokemons.service.login.LoginService;
-import com.pokemons.pokemons.service.login.LoginServiceException;
+import com.pokemons.pokemons.service.common.login.LoginService;
+import com.pokemons.pokemons.service.common.login.LoginServiceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +23,9 @@ public class LoginController {
         return "login-form";
     }
 
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     public String sendLoginData(UserRequest userRequest, Model model){
-        System.out.println(userRequest);
+        System.out.println("............................");
 
         try {
             loginService.login(userRequest);
@@ -35,5 +35,5 @@ public class LoginController {
             return "error";
         }
         return "index";
-    }
+    }*/
 }
