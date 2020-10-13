@@ -1,9 +1,12 @@
 package com.pokemons.pokemons.controller;
 
+import com.pokemons.pokemons.model.User;
 import com.pokemons.pokemons.service.common.login.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Optional;
 
 @Controller
 public class HomeController {
@@ -15,7 +18,14 @@ public class HomeController {
 
     @GetMapping("/")
     public String getHomePage(Model model){
-        loginService.getLoggedUser().ifPresent(user -> model.addAttribute("user", user));
+        Optional<User> userOptional = loginService.getLoggedUser();
+
+        userOptional.ifPresent(user -> model.addAttribute("user", user));
+
+        System.out.println(userOptional);
+        userOptional.ifPresent(user -> model.addAttribute("trainer", user.getTrainer()));
+
         return "index";
     }
+
 }

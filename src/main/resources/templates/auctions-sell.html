@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Auctions Sell</title>
+</head>
+<body>
+<h1>Select which card you want to sell.</h1>
+
+<tr th:each="card:${cards}">
+    <td><img th:src="${card.imageUrl}"/></td>
+</tr>
+
+</body>
+</html>

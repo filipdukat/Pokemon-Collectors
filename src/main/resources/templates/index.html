@@ -24,22 +24,34 @@
     </a>
 </div>
 
-<div>
+<div sec:authorize="isAuthenticated()">
     <a href="/logout">
         Log Out
     </a>
 </div>
 
-<div>
+<div sec:authorize="isAuthenticated()" th:if="trainer != null">
 <!--TODO: This should only appear after login-->
     <a href="/trainer-creation">
         Create your trainer
     </a>
 </div>
 
-<div>
+<div sec:authorize="isAuthenticated()" th:if="trainer == null">
     <a href="/packs-opening">
         Packs Opening
+    </a>
+</div>
+
+<div sec:authorize="isAuthenticated()" th:if="trainer == null">
+    <a href="/auctions/sell">
+        Sell cards
+    </a>
+</div>
+
+<div sec:authorize="isAuthenticated()" th:if="trainer == null">
+    <a href="/auctions/buy">
+        Buy cards
     </a>
 </div>
 

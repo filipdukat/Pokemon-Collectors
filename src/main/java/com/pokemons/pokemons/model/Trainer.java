@@ -5,7 +5,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 public class Trainer {
@@ -14,8 +16,10 @@ public class Trainer {
     @Enumerated(value = EnumType.STRING)
     private Sex sex;
     private LocalDate birthDate;
-    @ManyToMany
-    private List<Card> cards = new ArrayList<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+//    @MapKeyColumn(name="key") // column name for map "key"
+//    @Column(name="value") // column name for map "value"
+    private Map<Card, Integer> cards = new HashMap<>();
 
     public Trainer(String name, Sex sex, LocalDate birthDate) {
         this.name = name;
@@ -27,8 +31,18 @@ public class Trainer {
 
     }
 
+    public void addCard(Card card){
+        if (cards.containsKey(card)){
+            cards.put(card,cards.get(card)+1);
+        }else{
+            cards.put(card, 1);
+        }
+    }
+
     public void addCards(List<Card> newCards){
-        cards.addAll(newCards);
+        for (Card newCard : newCards) {
+            addCard(newCard);
+        }
     }
 
     @Override
