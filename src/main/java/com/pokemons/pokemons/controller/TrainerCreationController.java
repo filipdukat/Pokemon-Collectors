@@ -34,6 +34,7 @@ public class TrainerCreationController {
             model.addAttribute("error", e.getMessage());
             return "error";
         }
-        return "index";
+
+        return "redirect:/";
     }
 }

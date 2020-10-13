@@ -30,26 +30,26 @@
     </a>
 </div>
 
-<div sec:authorize="isAuthenticated()" th:if="trainer != null">
+<div sec:authorize="isAuthenticated()" th:if="${!hasTrainer}">
 <!--TODO: This should only appear after login-->
     <a href="/trainer-creation">
         Create your trainer
     </a>
 </div>
 
-<div sec:authorize="isAuthenticated()" th:if="trainer == null">
+<div sec:authorize="isAuthenticated()" th:if="${hasTrainer}">
     <a href="/packs-opening">
         Packs Opening
     </a>
 </div>
 
-<div sec:authorize="isAuthenticated()" th:if="trainer == null">
+<div sec:authorize="isAuthenticated()" th:if="${hasTrainer}">
     <a href="/auctions/sell">
         Sell cards
     </a>
 </div>
 
-<div sec:authorize="isAuthenticated()" th:if="trainer == null">
+<div sec:authorize="isAuthenticated()" th:if="${hasTrainer}">
     <a href="/auctions/buy">
         Buy cards
     </a>

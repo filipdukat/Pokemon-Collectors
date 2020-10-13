@@ -27,10 +27,6 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return new ArrayList<>(List.of(new SimpleGrantedAuthority("ROLE_USER")));
