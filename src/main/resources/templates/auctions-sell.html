@@ -7,7 +7,7 @@
 <body>
 <h1>Select which card you want to sell.</h1>
 
-<tr th:each="card:${cards}">
+<tr th:each="card:${cards.keySet()}">
     <td><img th:src="${card.imageUrl}"/></td>
 </tr>
 

@@ -22,8 +22,6 @@ public class HomeController {
 
         userOptional.ifPresent(user -> model.addAttribute("user", user));
 
-        System.out.println(userOptional);
-
         model.addAttribute("hasTrainer", false);
         userOptional.ifPresent(user -> model.addAttribute("hasTrainer", user.getTrainer() != null));
 

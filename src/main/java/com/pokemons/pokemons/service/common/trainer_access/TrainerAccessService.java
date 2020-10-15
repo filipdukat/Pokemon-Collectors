@@ -29,4 +29,5 @@ public class TrainerAccessService {
     public void updateTrainer(Trainer trainer){
         trainerRepository.save(trainer);
     }
+
 }

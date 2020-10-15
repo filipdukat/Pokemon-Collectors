@@ -45,6 +45,10 @@ public class Trainer {
         }
     }
 
+    public Map<Card, Integer> getCards() {
+        return cards;
+    }
+
     @Override
     public String toString() {
         return "Trainer{" +
