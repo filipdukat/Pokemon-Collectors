@@ -1,0 +1,22 @@
+h1{
+    color: blue;
+}
+.auction{
+    margin: 10px;
+    float: left;
+}
+.number-input{
+    width: 50px;
+}
+.auction-form{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.sell-button{
+    width: 200px;
+    margin: 10px;
+}
+.image{
+    width: 245px;
+    height: 342px;
+}
