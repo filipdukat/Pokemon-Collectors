@@ -31,6 +31,10 @@ public class Trainer {
 
     }
 
+    public int getCardsAmount(Card card){
+        return cards.get(card);
+    }
+
     public void addCard(Card card){
         if (cards.containsKey(card)){
             cards.put(card,cards.get(card)+1);

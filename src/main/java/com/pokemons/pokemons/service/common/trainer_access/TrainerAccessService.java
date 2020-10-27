@@ -16,7 +16,6 @@ public class TrainerAccessService {
         this.trainerRepository = trainerRepository;
     }
 
-
     public Trainer getTrainerOfLoggedUser(){
         User loggedUser = loginService.getLoggedUserOrThrow();
 

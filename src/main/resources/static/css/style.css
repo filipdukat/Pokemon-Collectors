@@ -1,6 +1,12 @@
 h1{
     color: blue;
 }
+#success-message{
+    color: green;
+}
+#error-message{
+    color: red;
+}
 .auction{
     margin: 10px;
     float: left;

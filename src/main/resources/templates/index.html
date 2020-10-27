@@ -4,12 +4,14 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
+<!--    <link rel="stylesheet" th:href="@{/css/style.css}">-->
     <meta charset="UTF-8">
     <title>Pokemon Card Service</title>
 </head>
 <body>
-<p>Welcome to the front page!</p>
-
+<h1>Welcome to the front page!</h1>
+<h2 id="success-message" th:if="${success != null}" th:text="${'Success: ' + success}"></h2>
+<h2 id="error-message" th:if="${error != null}" th:text="${'Error: ' + error}"></h2>
 
 <!--https://stackoverflow.com/questions/56579301/how-do-i-hide-login-link-and-show-logout-link-in-homepage-navbar-once-user-logs-->
 <div sec:authorize="!isAuthenticated()">

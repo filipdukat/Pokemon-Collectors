@@ -15,15 +15,15 @@
 
         <img class="image" th:src="${card.imageUrl}"/>
 
-        <form class="auction-form">
+        <form th:action="${'/auctions/sell/' + card.id}" method="post" class="auction-form">
             <span>
                 <label>Amount: </label>
-                <input min="1" th:max="${cards.get(card)}" class="number-input" type="number">
+                <input th:field="${request.amount}" min="1" th:max="${cards.get(card)}" class="number-input" type="number">
             </span>
 
             <span>
                 <label>Price: </label>
-                <input min="1" class="number-input" type="number">
+                <input th:field="${request.price}" min="1" class="number-input" type="number">
             </span>
 
             <div>

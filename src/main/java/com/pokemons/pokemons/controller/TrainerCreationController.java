@@ -1,6 +1,7 @@
 package com.pokemons.pokemons.controller;
 
 import com.pokemons.pokemons.requests.TrainerRequest;
+import com.pokemons.pokemons.service.common.login.LoginService;
 import com.pokemons.pokemons.service.use_case.trainer_creation.TrainerCreationException;
 import com.pokemons.pokemons.service.use_case.trainer_creation.TrainerCreationService;
 import org.springframework.stereotype.Controller;
@@ -9,10 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class TrainerCreationController {
+public class TrainerCreationController extends BaseController{
     private TrainerCreationService trainerCreationService;
 
-    public TrainerCreationController(TrainerCreationService trainerCreationService) {
+    public TrainerCreationController(TrainerCreationService trainerCreationService, LoginService loginService) {
+        super(loginService);
         this.trainerCreationService = trainerCreationService;
     }
 

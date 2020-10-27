@@ -1,15 +1,17 @@
 package com.pokemons.pokemons.controller;
 
+import com.pokemons.pokemons.service.common.login.LoginService;
 import com.pokemons.pokemons.service.use_case.packs_opening.PacksOpeningService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class PacksOpeningController {
+public class PacksOpeningController extends BaseController{
     private PacksOpeningService packsOpeningService;
 
-    public PacksOpeningController(PacksOpeningService packsOpeningService) {
+    public PacksOpeningController(PacksOpeningService packsOpeningService, LoginService loginService) {
+        super(loginService);
         this.packsOpeningService = packsOpeningService;
     }
 

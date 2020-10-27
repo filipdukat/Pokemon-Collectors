@@ -32,19 +32,19 @@ public class LoginService implements UserDetailsService {
     public Optional<User> getLoggedUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if (principal instanceof User){
+        if (principal instanceof User) {
             return Optional.of((User) principal);
-        }else{
+        } else {
             return Optional.empty();
         }
     }
 
-    public void updateUser(User user){
+    public void updateUser(User user) {
         userRepository.save(user);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findById(username).orElseThrow(()->new UsernameNotFoundException("User not found."));
+        return userRepository.findById(username).orElseThrow(() -> new UsernameNotFoundException("User not found."));
     }
 }
