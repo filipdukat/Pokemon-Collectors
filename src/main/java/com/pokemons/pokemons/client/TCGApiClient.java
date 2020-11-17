@@ -24,7 +24,6 @@ public class TCGApiClient {
     public void downloadAllCards(){
         Cards cards = restTemplate.getForObject(URL + "cards", Cards.class);
         List<Card> cardsList = cards.getCards();
-        System.out.println(cardsList);
         dbCardRepository.saveAll(cardsList);
 
 

@@ -27,14 +27,12 @@ public class RegistrationController extends BaseController{
 
     @PostMapping("/register")
     public String sendRegistrationData(UserRequest userRequest, Model model){
-        System.err.println(userRequest);
 
         try {
             registrationService.register(userRequest);
         }
         catch (RegistrationServiceException e){
-            model.addAttribute("error", e.getMessage());
-            return "error";
+            return redirectToIndex(model,e.getMessage(),MessageType.ERROR);
         }
         return "index";
     }

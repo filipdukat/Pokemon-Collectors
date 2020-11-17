@@ -19,8 +19,6 @@ public class TrainerAccessService {
     public Trainer getTrainerOfLoggedUser(){
         User loggedUser = loginService.getLoggedUserOrThrow();
 
-        System.out.println(loggedUser);
-
         return loggedUser.getTrainer();
 
     }

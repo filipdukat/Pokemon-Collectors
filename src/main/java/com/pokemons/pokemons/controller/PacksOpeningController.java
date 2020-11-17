@@ -24,14 +24,6 @@ public class PacksOpeningController extends BaseController{
     public String openPack(Model model){
         model.addAttribute("cards",packsOpeningService.getCards());
 
-        /*try {
-            loginService.login(userRequest);
-        }
-        catch (LoginServiceException e){
-            model.addAttribute("error", e.getMessage());
-            return "error";
-        }*/
-
         return "new-cards";
     }
 }

@@ -8,9 +8,9 @@ import javax.validation.constraints.Min;
 
 public class AuctionSellRequest {
     private String cardID;
-    @Min(1)
+    @Min(value = 1,message = "Minimal amount is 1.")
     private int amount;
-    @Min(1)
+    @Min(value = 1,message = "Minimal price is 1.")
     private int price;
 
     public String getCardID() {

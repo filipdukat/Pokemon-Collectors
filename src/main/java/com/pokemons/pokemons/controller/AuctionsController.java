@@ -32,15 +32,14 @@ public class AuctionsController extends BaseController{
         model.addAttribute("cards", cards);
         model.addAttribute("request",request);
         //model.addAttribute(cards);
-        System.out.println(cards);
         return "auctions-sell";
     }
 
     @PostMapping("sell/{cardID}")
-    public String sendAuctionsSellForm(@Valid AuctionSellRequest request, @PathVariable String cardID, BindingResult br, Model model){
+    public String sendAuctionsSellForm(Model model, @Valid AuctionSellRequest request, BindingResult br, @PathVariable String cardID ){
 
         if (br.hasErrors()){
-            return "error";
+            return redirectToIndex(model,br.getAllErrors().get(0).getDefaultMessage(),MessageType.ERROR);
         }
 
         request.setCardID(cardID);
@@ -50,7 +49,6 @@ public class AuctionsController extends BaseController{
         }
         catch (AuctionServiceException e){
             return redirectToIndex(model, e.getMessage(), MessageType.ERROR);
-            //chcemy zrobic klase wspolna dla wszystkich kontrolerow ktora bedzie dostarczac metode przekierowujaca do strony glownej (z komunikatem o bledzie)
         }
         return  "redirect:/auctions/sell";
     }

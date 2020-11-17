@@ -27,14 +27,12 @@ public class TrainerCreationController extends BaseController{
 
     @PostMapping("/trainer-creation")
     public String sendTrainerCreationData(TrainerRequest trainerRequest, Model model){
-        System.out.println(trainerRequest);
 
         try {
             trainerCreationService.create(trainerRequest);
         }
         catch (TrainerCreationException e){
-            model.addAttribute("error", e.getMessage());
-            return "error";
+            return redirectToIndex(model, e.getMessage(), MessageType.ERROR);
         }
 
         return "redirect:/";

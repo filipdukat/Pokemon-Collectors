@@ -49,6 +49,14 @@ public class Trainer {
         }
     }
 
+    public void removeCard(Card card, int quantity){
+            cards.put(card, cards.get(card)-quantity);
+
+            if (cards.get(card) == 0){
+                cards.remove(card);
+            }
+    }
+
     public Map<Card, Integer> getCards() {
         return cards;
     }

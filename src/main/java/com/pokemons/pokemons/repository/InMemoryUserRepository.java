@@ -13,7 +13,6 @@ public class InMemoryUserRepository implements UserRepository {
     @Override
     public User save(User user) {
         users.add(user);
-        System.out.println(users);
         return user;
     }
 

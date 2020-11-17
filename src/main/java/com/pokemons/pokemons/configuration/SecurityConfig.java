@@ -23,6 +23,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/resources/**");
     }
 */
+   /*@Override
+   public void configure(WebSecurity web) throws Exception {
+       web.ignoring().antMatchers("/resources/**");
+   }*/
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
@@ -30,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
               // .antMatchers("resources/**").permitAll()
+                .antMatchers("/css/**").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/console/**").permitAll()
                 .antMatchers("/register").permitAll()

@@ -24,17 +24,4 @@ public class LoginController extends BaseController{
         return "login-form";
     }
 
-    /*@PostMapping("/login")
-    public String sendLoginData(UserRequest userRequest, Model model){
-        System.out.println("............................");
-
-        try {
-            loginService.login(userRequest);
-        }
-        catch (LoginServiceException e){
-            model.addAttribute("error", e.getMessage());
-            return "error";
-        }
-        return "index";
-    }*/
 }
