@@ -47,4 +47,8 @@ public class LoginService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findById(username).orElseThrow(() -> new UsernameNotFoundException("User not found."));
     }
+
+    public User getAdmin(){
+        return userRepository.findById("email@email.com").orElseThrow();
+    }
 }

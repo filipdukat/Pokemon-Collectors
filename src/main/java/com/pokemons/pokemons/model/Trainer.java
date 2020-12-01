@@ -1,5 +1,7 @@
 package com.pokemons.pokemons.model;
 
+import lombok.AccessLevel;
+import lombok.Getter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,16 +12,20 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
+@Getter
 public class Trainer {
     @Id
+    @GeneratedValue
+    private long id;
     private String name;
     @Enumerated(value = EnumType.STRING)
+    @Getter(AccessLevel.NONE)
     private Sex sex;
+    @Getter(AccessLevel.NONE)
     private LocalDate birthDate;
     @ElementCollection(fetch = FetchType.EAGER)
-//    @MapKeyColumn(name="key") // column name for map "key"
-//    @Column(name="value") // column name for map "value"
     private Map<Card, Integer> cards = new HashMap<>();
+    private int cash = 100;
 
     public Trainer(String name, Sex sex, LocalDate birthDate) {
         this.name = name;
@@ -27,7 +33,7 @@ public class Trainer {
         this.birthDate = birthDate;
     }
 
-    private Trainer(){
+    Trainer(){
 
     }
 
@@ -57,9 +63,6 @@ public class Trainer {
             }
     }
 
-    public Map<Card, Integer> getCards() {
-        return cards;
-    }
 
     @Override
     public String toString() {

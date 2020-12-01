@@ -12,14 +12,17 @@ public class Auction {
     private int id;
     @ManyToOne
     private Card card;
+    @ManyToOne
+    private Trainer trainer;
     private int quantity;
     private int price;
 
     public Auction() {
     }
 
-    public Auction(Card card, int quantity, int price) {
+    public Auction(Card card, Trainer trainer, int quantity, int price) {
         this.card = card;
+        this.trainer = trainer;
         this.quantity = quantity;
         this.price = price;
     }
@@ -40,11 +43,16 @@ public class Auction {
         return id;
     }
 
+    public Trainer getTrainer() {
+        return trainer;
+    }
+
     @Override
     public String toString() {
         return "Auction{" +
                 "id=" + id +
                 ", card=" + card +
+                ", trainer=" + trainer +
                 ", quantity=" + quantity +
                 ", price=" + price +
                 '}';

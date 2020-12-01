@@ -7,6 +7,8 @@ import com.pokemons.pokemons.requests.TrainerRequest;
 import com.pokemons.pokemons.service.common.login.LoginService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+
 @Service
 public class TrainerCreationService {
     private DBTrainerRepository trainerRepository;
@@ -17,25 +19,40 @@ public class TrainerCreationService {
         this.loginService = loginService;
     }
 
+    @PostConstruct
+    public void attachTrainerForAdmin(){
+        attachTrainer(trainerRepository.getOne(1L), loginService.getAdmin());
+        //todo
+        //wciganac trenera i usera i sprawdzic czy dziala
+    }
+
     public void create(TrainerRequest trainerRequest){
+        User loggedUser = loginService.getLoggedUserOrThrow();
+        createForUser(trainerRequest, loggedUser);
+    }
+
+    private void createForUser(TrainerRequest trainerRequest, User user){
         validateTrainer(trainerRequest);
 
         Trainer trainer = new Trainer(trainerRequest.getName(), trainerRequest.getSex(), trainerRequest.getBirthDate());
 
-        User loggedUser = loginService.getLoggedUserOrThrow();
+        attachTrainer(trainer,user);
+    }
 
-        loggedUser.setTrainer(trainer);
+    private void attachTrainer(Trainer trainer, User user){
+        user.setTrainer(trainer);
 
         trainerRepository.save(trainer);
 
-        loginService.updateUser(loggedUser);
+        loginService.updateUser(user);
     }
+
 
     private void validateTrainer(TrainerRequest trainerRequest){
         if (trainerRequest.getName().equals("")){
             throw new TrainerCreationException("Name can not be empty.");
         }else if(trainerRequest.getSex() == null){
-
+        //todo
         }else if (trainerRequest.getBirthDate() == null){
 
         }

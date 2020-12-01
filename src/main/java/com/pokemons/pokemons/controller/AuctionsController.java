@@ -54,7 +54,9 @@ public class AuctionsController extends BaseController{
     }
 
     @GetMapping("buy")
-    public String getAuctionsBuyForm(){
+    public String getAuctionsBuyForm(Model model){
+        model.addAttribute("data",auctionService.prepareAuctionBuyData());
+        System.out.println(model);
         return "auctions-buy";
     }
 

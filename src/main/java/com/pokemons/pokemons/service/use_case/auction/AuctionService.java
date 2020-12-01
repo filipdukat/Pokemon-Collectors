@@ -7,7 +7,12 @@ import com.pokemons.pokemons.repository.DBAuctionRepository;
 import com.pokemons.pokemons.requests.AuctionSellRequest;
 import com.pokemons.pokemons.service.common.card_access.CardAccessService;
 import com.pokemons.pokemons.service.common.trainer_access.TrainerAccessService;
+import com.pokemons.pokemons.view_model.AuctionBuyPageViewModel;
+import com.pokemons.pokemons.view_model.AuctionViewModel;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AuctionService {
@@ -30,11 +35,33 @@ public class AuctionService {
            throw new AuctionServiceException("You do not have enough cards.");
        }
 
-        Auction auction = new Auction(card, request.getAmount(), request.getPrice());
+        Auction auction = new Auction(card, trainer, request.getAmount(), request.getPrice());
         auctionRepository.save(auction);
 
         trainer.removeCard(card, request.getAmount());
         trainerAccessService.updateTrainer(trainer);
+    }
+
+    public AuctionBuyPageViewModel prepareAuctionBuyData(){
+        List<Auction> auctions = auctionRepository.findAll();
+        List<AuctionViewModel> auctionViewModels = new ArrayList<>();
+
+        for (Auction auction : auctions) {
+            AuctionViewModel auctionViewModel = AuctionViewModel.builder()
+                    .auctionID(auction.getId())
+                    .cardPrice(auction.getPrice())
+                    .cardQuantity(auction.getQuantity())
+                    .auctionOwner(auction.getTrainer().getName())
+                    .cardURL(auction.getCard().getImageUrl())
+                    .build();
+            auctionViewModels.add(auctionViewModel);
+        }
+
+        AuctionBuyPageViewModel page = AuctionBuyPageViewModel.builder()
+                .auctions(auctionViewModels)
+                .userCash(trainerAccessService.getTrainerOfLoggedUser().getCash())
+                .build();
+        return page;
     }
 
 
