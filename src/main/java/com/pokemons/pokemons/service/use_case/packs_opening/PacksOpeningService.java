@@ -12,6 +12,8 @@ import java.util.Random;
 
 @Service
 public class PacksOpeningService {
+    private static final int PRICE = 5;
+
     private DBCardRepository dbCardRepository;
     private TrainerAccessService trainerAccessService;
 
@@ -33,9 +35,12 @@ public class PacksOpeningService {
         Trainer trainer = trainerAccessService.getTrainerOfLoggedUser();
 
         trainer.addCards(randomCards);
+        trainer.removeCash(PRICE);
 
         trainerAccessService.updateTrainer(trainer);
 
         return randomCards;
     }
+
+
 }

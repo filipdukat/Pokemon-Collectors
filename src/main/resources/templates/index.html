@@ -57,7 +57,9 @@
     </a>
 </div>
 
-<span sec:authorize="isAuthenticated()" th:text="'You are logged in as: ' + ${user.getUsername()}"></span>
+<label sec:authorize="isAuthenticated()" th:text="'You are logged in as: ' + ${user.getUsername()}"></label>
+<br>
+<label sec:authorize="isAuthenticated()" th:text="'Your cash: ' + ${user.getTrainer().getCash()}"></label>
 
 </body>
 </html>
