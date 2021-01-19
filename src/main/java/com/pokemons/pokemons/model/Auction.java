@@ -47,6 +47,10 @@ public class Auction {
         return trainer;
     }
 
+    public void decreaseQuantity(int cardsSold){
+        quantity -= cardsSold;
+    }
+
     @Override
     public String toString() {
         return "Auction{" +

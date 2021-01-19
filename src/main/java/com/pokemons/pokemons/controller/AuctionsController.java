@@ -1,6 +1,7 @@
 package com.pokemons.pokemons.controller;
 
 import com.pokemons.pokemons.model.Card;
+import com.pokemons.pokemons.requests.AuctionBuyRequest;
 import com.pokemons.pokemons.requests.AuctionSellRequest;
 import com.pokemons.pokemons.service.common.login.LoginService;
 import com.pokemons.pokemons.service.common.trainer_access.TrainerAccessService;
@@ -55,9 +56,24 @@ public class AuctionsController extends BaseController{
 
     @GetMapping("buy")
     public String getAuctionsBuyForm(Model model){
+        AuctionBuyRequest request = new AuctionBuyRequest();
         model.addAttribute("data",auctionService.prepareAuctionBuyData());
-        System.out.println(model);
+        model.addAttribute("request",request);
         return "auctions-buy";
+    }
+
+    @PostMapping("buy/{auctionID}")
+    public String processAuctionBuyForm(Model model, @Valid AuctionBuyRequest request, BindingResult br, @PathVariable int auctionID ){
+
+        request.setAuctionID(auctionID);
+
+        try{
+            auctionService.auctionBuy(request);
+        }catch (AuctionServiceException e){
+            return redirectToIndex(model, e.getMessage(), MessageType.ERROR);
+        }
+
+        return "redirect:/auctions/buy";
     }
 
 

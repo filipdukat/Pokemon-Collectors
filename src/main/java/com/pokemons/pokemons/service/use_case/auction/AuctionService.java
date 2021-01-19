@@ -4,6 +4,7 @@ import com.pokemons.pokemons.model.Auction;
 import com.pokemons.pokemons.model.Card;
 import com.pokemons.pokemons.model.Trainer;
 import com.pokemons.pokemons.repository.DBAuctionRepository;
+import com.pokemons.pokemons.requests.AuctionBuyRequest;
 import com.pokemons.pokemons.requests.AuctionSellRequest;
 import com.pokemons.pokemons.service.common.card_access.CardAccessService;
 import com.pokemons.pokemons.service.common.trainer_access.TrainerAccessService;
@@ -62,6 +63,40 @@ public class AuctionService {
                 .userCash(trainerAccessService.getTrainerOfLoggedUser().getCash())
                 .build();
         return page;
+    }
+
+    public void auctionBuy(AuctionBuyRequest request){
+        Auction auction = auctionRepository.findById(request.getAuctionID()).orElseThrow(() -> new AuctionServiceException("Can not find auction."));
+        Trainer buyer = trainerAccessService.getTrainerOfLoggedUser();
+        Trainer seller = auction.getTrainer();
+        int price = auction.getPrice()* request.getAmount();
+
+        if (buyer.getCash() < price){
+            throw new AuctionServiceException("You do not have enough cash.");
+        }
+
+        if (request.getAmount() > auction.getQuantity() || request.getAmount() < 0){
+            throw new AuctionServiceException("The number should be between 1 and " + auction.getQuantity() + ".");
+        }
+
+        if (buyer.equals(seller)) {
+            seller = buyer;
+        }
+
+        buyer.addCard(auction.getCard(), request.getAmount());
+        buyer.removeCash(price);
+        seller.addCash(price);
+        auction.decreaseQuantity(request.getAmount());
+
+        if (auction.getQuantity() == 0){
+            auctionRepository.delete(auction);
+        }else{
+            auctionRepository.save(auction);
+        }
+
+        trainerAccessService.updateTrainer(seller);
+        trainerAccessService.updateTrainer(buyer);
+
     }
 
 

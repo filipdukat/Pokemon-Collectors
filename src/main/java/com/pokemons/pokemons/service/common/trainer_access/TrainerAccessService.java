@@ -6,8 +6,12 @@ import com.pokemons.pokemons.repository.DBTrainerRepository;
 import com.pokemons.pokemons.service.common.login.LoginService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TrainerAccessService {
+    private static final int DAILY_CASH = 10;
+
     private LoginService loginService;
     private DBTrainerRepository trainerRepository;
 
@@ -25,6 +29,16 @@ public class TrainerAccessService {
 
     public void updateTrainer(Trainer trainer){
         trainerRepository.save(trainer);
+    }
+
+    public void giveCash(){
+        List<Trainer> trainers = trainerRepository.findAll();
+
+        for (Trainer trainer : trainers) {
+            trainer.addCash(DAILY_CASH);
+        }
+
+        trainerRepository.saveAll(trainers);
     }
 
 }

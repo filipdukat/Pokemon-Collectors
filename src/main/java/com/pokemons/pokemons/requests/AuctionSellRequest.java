@@ -1,9 +1,6 @@
 package com.pokemons.pokemons.requests;
 
-import com.pokemons.pokemons.model.Card;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 public class AuctionSellRequest {

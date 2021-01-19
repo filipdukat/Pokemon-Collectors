@@ -6,10 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 @Getter
@@ -41,17 +38,17 @@ public class Trainer {
         return cards.get(card);
     }
 
-    public void addCard(Card card){
+    public void addCard(Card card, int quantity){
         if (cards.containsKey(card)){
-            cards.put(card,cards.get(card)+1);
+            cards.put(card,cards.get(card)+quantity);
         }else{
-            cards.put(card, 1);
+            cards.put(card, quantity);
         }
     }
 
     public void addCards(List<Card> newCards){
         for (Card newCard : newCards) {
-            addCard(newCard);
+            addCard(newCard, 1);
         }
     }
 
@@ -63,6 +60,26 @@ public class Trainer {
             }
     }
 
+    public void addCash(int addedCash){
+        cash += addedCash;
+    }
+
+    public void removeCash(int removedCash){
+        cash -= removedCash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Trainer trainer = (Trainer) o;
+        return id == trainer.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     @Override
     public String toString() {
