@@ -1,6 +1,7 @@
 package com.pokemons.pokemons.configuration;
 
 import com.pokemons.pokemons.service.common.login.LoginService;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -33,16 +34,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().disable(); // to allow H2 console
 
         http.authorizeRequests()
-              // .antMatchers("resources/**").permitAll()
+                //.antMatchers("resources/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/console/**").permitAll()
                 .antMatchers("/register").permitAll()
                 .anyRequest().authenticated()
 
+
                 .and()
                 .formLogin().permitAll()
                 .loginPage("/login").defaultSuccessUrl("/");
+
 
     }
 

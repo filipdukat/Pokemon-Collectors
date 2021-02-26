@@ -19,7 +19,7 @@ public class TrainerCreationService {
         this.loginService = loginService;
     }
 
-    @PostConstruct
+    //@PostConstruct do testow
     public void attachTrainerForAdmin(){
         attachTrainer(trainerRepository.getOne(1L), loginService.getAdmin());
         //todo

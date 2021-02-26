@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration Form</title>
+    <div  th:insert="~{layout/taskbar :: head}"></div>
 </head>
 <body>
+<div class="container" th:insert="~{layout/taskbar :: header}"></div>
+<div id = "content">
+    <div id = "content-text">
 Fill your registration data.
 <form action="/register" method="post" th:object=${userRequest}>
     Email: <input type="email" name="email" th:field="${userRequest.email}">
@@ -13,10 +17,14 @@ Fill your registration data.
     <br>
     <input type="submit" value="Submit">
     <div>
-        <a href="/">
-            Go back to the front page.
+        <a  href="/">
+
+            <div  id = "normal-text"> Go back to the front page.</div>
+
         </a>
     </div>
 </form>
+    </div>
+</div>
 </body>
 </html>

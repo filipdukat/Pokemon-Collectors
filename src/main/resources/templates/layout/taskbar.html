@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en" th:fragment="head">
+    <meta charset="UTF-8">
+    <link th:href="@{css/style.css}" href="/static/css/style.css"
+          rel="stylesheet" type="text/css" media="screen"/>
+
+</head>
+
+<body>
+
+<header id="nav">
+    <div class = "option-right" sec:authorize="!isAuthenticated()">
+        <a href="/login">
+            Log In
+        </a>
+    </div>
+
+    <div class = "option-right" sec:authorize="!isAuthenticated()">
+        <a href="/register">
+            Sign Up
+        </a>
+    </div>
+
+    <div class = "option-right" sec:authorize="isAuthenticated()">
+        <a href="/logout">
+            Log Out
+        </a>
+    </div>
+
+    <div class = "option-left" sec:authorize="isAuthenticated()" th:if="${!hasTrainer}">
+        <!--TODO: This should only appear after login-->
+        <a href="/trainer-creation">
+            Create Your Yrainer
+        </a>
+    </div>
+
+    <div class = "option-left" sec:authorize="isAuthenticated()" th:if="${hasTrainer}">
+        <a href="/packs-opening">
+            Packs Opening
+        </a>
+    </div>
+
+    <div class = "option-left" sec:authorize="isAuthenticated()" th:if="${hasTrainer}">
+        <a href="/auctions/sell">
+            Sell Cards
+        </a>
+    </div>
+
+    <div class = "option-left" sec:authorize="isAuthenticated()" th:if="${hasTrainer}">
+        <a href="/auctions/buy">
+            Buy Cards
+        </a>
+    </div>
+    <div style = "clear: both;"></div>
+</header>
+
+</body>
+</html>

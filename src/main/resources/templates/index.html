@@ -1,65 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+
 
 <head>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!--<link rel="stylesheet" th:href="@{/css/style.css}" >-->
+    <div  th:insert="~{layout/taskbar :: head}"></div>
     <meta charset="UTF-8">
     <title>Pokemon Card Service</title>
 </head>
 <body>
+
+<div class="container" th:insert="~{layout/taskbar :: header}"></div>
+
+<div id="content">
+    <div id = "content-text">
 <h1>Welcome to the front page!</h1>
 <h2 id="success-message" th:if="${success != null}" th:text="${'Success: ' + success}"></h2>
 <h2 id="error-message" th:if="${error != null}" th:text="${'Error: ' + error}"></h2>
 
 <!--https://stackoverflow.com/questions/56579301/how-do-i-hide-login-link-and-show-logout-link-in-homepage-navbar-once-user-logs-->
-<div sec:authorize="!isAuthenticated()">
-        <a href="/login">
-            Log In
-        </a>
-</div>
 
-<div sec:authorize="!isAuthenticated()">
-    <a href="/register">
-        Sign Up
-    </a>
-</div>
-
-<div sec:authorize="isAuthenticated()">
-    <a href="/logout">
-        Log Out
-    </a>
-</div>
-
-<div sec:authorize="isAuthenticated()" th:if="${!hasTrainer}">
-<!--TODO: This should only appear after login-->
-    <a href="/trainer-creation">
-        Create your trainer
-    </a>
-</div>
-
-<div sec:authorize="isAuthenticated()" th:if="${hasTrainer}">
-    <a href="/packs-opening">
-        Packs Opening
-    </a>
-</div>
-
-<div sec:authorize="isAuthenticated()" th:if="${hasTrainer}">
-    <a href="/auctions/sell">
-        Sell cards
-    </a>
-</div>
-
-<div sec:authorize="isAuthenticated()" th:if="${hasTrainer}">
-    <a href="/auctions/buy">
-        Buy cards
-    </a>
-</div>
 
 <label sec:authorize="isAuthenticated()" th:text="'You are logged in as: ' + ${user.getUsername()}"></label>
 <br>
-<label sec:authorize="isAuthenticated()" th:text="'Your cash: ' + ${user.getTrainer().getCash()}"></label>
+<label sec:authorize="isAuthenticated()" th:if="${hasTrainer}" th:text="'Your cash: ' + ${user.getTrainer().getCash()}"></label>
+</div>
+</div>
+
+<div id="content-manual">
+    <h3><p>How to use website:</p>
+        <p>1.Sing up with your email address.</p>
+        <p>2.Log in.</p>
+        <p>3.Create trainer.</p>
+        <p>4.Open packs then trade them with other users.</p>
+    </h3>
+</div>
+
+<!--<section layout:fragment="custom-content">
+
+</section>-->
 
 </body>
 </html>

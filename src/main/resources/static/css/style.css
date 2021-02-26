@@ -1,11 +1,72 @@
 h1{
-    color: blue;
+    color:black;
+    text-align: center;
+}
+h3{
+    color:black;
+    text-align: center;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Robot", sans-serif;
 }
 #success-message{
     color: green;
 }
 #error-message{
     color: red;
+}
+#nav{
+    margin-top: 20px;
+    font-size: 20px;
+    color: white;
+    min-width: 100vh;
+    background-color: dimgray;
+}
+#content{
+    margin-top: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border: dimgray solid 2px;
+    background-color: rgb(240,240,240);
+
+}
+#content-manual{
+    margin-top: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border: dimgray solid 2px;
+    background-color: rgb(240,240,240);
+}
+#normal-text{
+    color: black;
+}
+#content-text{
+    text-align: center;
+}
+.option-left{
+    float:left;
+    padding: 20px;
+}
+.option-right{
+    float:right;
+    padding: 20px;
+}
+.option-right:hover{
+    background-color: #585858;
+    cursor: pointer;
+}
+.option-left:hover{
+    background-color: #585858;
+    cursor: pointer;
 }
 .auction{
     margin: 10px;
@@ -26,3 +87,6 @@ h1{
     width: 245px;
     height: 342px;
 }
+
+
+
