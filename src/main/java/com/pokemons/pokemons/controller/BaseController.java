@@ -24,7 +24,10 @@ public class BaseController {
         userOptional.ifPresent(user -> model.addAttribute("user", user));
 
         model.addAttribute("hasTrainer", false);
+
         userOptional.ifPresent(user -> model.addAttribute("hasTrainer", user.getTrainer() != null));
+
+        System.err.println(model);
 
         return "index";
     }

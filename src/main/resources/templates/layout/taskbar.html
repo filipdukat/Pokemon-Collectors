@@ -29,26 +29,26 @@
         </a>
     </div>
 
-    <div class = "option-left" sec:authorize="isAuthenticated()" th:if="${!hasTrainer}">
+    <div class = "option-left" sec:authorize="isAuthenticated()" th:if="${hasTrainer != null && !hasTrainer}">
         <!--TODO: This should only appear after login-->
         <a href="/trainer-creation">
-            Create Your Yrainer
+            Create Your Trainer
         </a>
     </div>
 
-    <div class = "option-left" sec:authorize="isAuthenticated()" th:if="${hasTrainer}">
+    <div class = "option-left" sec:authorize="isAuthenticated()" th:if="${hasTrainer != null && hasTrainer}">
         <a href="/packs-opening">
             Packs Opening
         </a>
     </div>
 
-    <div class = "option-left" sec:authorize="isAuthenticated()" th:if="${hasTrainer}">
+    <div class = "option-left" sec:authorize="isAuthenticated()" th:if="${hasTrainer != null && hasTrainer}">
         <a href="/auctions/sell">
             Sell Cards
         </a>
     </div>
 
-    <div class = "option-left" sec:authorize="isAuthenticated()" th:if="${hasTrainer}">
+    <div class = "option-left" sec:authorize="isAuthenticated()" th:if="${hasTrainer != null && hasTrainer}">
         <a href="/auctions/buy">
             Buy Cards
         </a>

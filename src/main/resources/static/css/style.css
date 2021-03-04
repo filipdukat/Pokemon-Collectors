@@ -62,10 +62,12 @@ body{
 }
 .option-right:hover{
     background-color: #585858;
-    cursor: pointer;
 }
 .option-left:hover{
     background-color: #585858;
+}
+
+a{
     cursor: pointer;
 }
 .auction{

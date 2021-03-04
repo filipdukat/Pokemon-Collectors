@@ -15,6 +15,7 @@ public class HomeController extends BaseController{
 
     @GetMapping("/")
     public String getHomePage(Model model){
+        System.err.println("ERROR");
         return redirectToIndex(model);
     }
 }
